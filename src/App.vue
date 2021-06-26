@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <Header @toggle-add-task="toggleAddTask" title="Task Tracker" />
+    <Header
+      @toggle-add-task="toggleAddTask"
+      title="Task Tracker"
+      :showAddTask="showAddTask"
+    />
     <div v-show="showAddTask">
       <AddTask @add-task="addTask" :tasksLength="tasks.length" />
     </div>
@@ -16,6 +20,7 @@
 import Header from './components/Header.vue';
 import Tasks from './components/Tasks.vue';
 import AddTask from './components/AddTask.vue';
+import { BASE_URL } from './config/config';
 
 export default {
   name: 'App',
@@ -49,29 +54,25 @@ export default {
         task.id === id ? { ...task, reminder: !task.reminder } : task
       );
     },
+
+    async fetchTasks() {
+      const res = await fetch(`${BASE_URL}/tasks`);
+      if (res) {
+        const data = await res.json();
+        return data;
+      }
+    },
+    async fetchTask(id) {
+      const res = await fetch(`${BASE_URL}/tasks/${id}`);
+      if (res) {
+        const data = await res.json();
+        return data;
+      }
+    },
   },
 
-  created() {
-    this.tasks = [
-      {
-        id: '1',
-        text: 'Doctors Appointment',
-        day: 'March 5th at 2:30pm',
-        reminder: true,
-      },
-      {
-        id: '2',
-        text: 'Meeting with boss',
-        day: 'March 6th at 1:30pm',
-        reminder: true,
-      },
-      {
-        id: '3',
-        text: 'Food shopping',
-        day: 'March 7th at 2:00pm',
-        reminder: false,
-      },
-    ];
+  async created() {
+    this.tasks = await this.fetchTasks();
   },
 };
 </script>
