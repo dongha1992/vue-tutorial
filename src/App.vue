@@ -13,6 +13,9 @@
       @delete-task="deleteTask"
       :tasks="tasks"
     />
+    <router-view>
+      <Footer />
+    </router-view>
   </div>
 </template>
 
@@ -20,6 +23,7 @@
 import Header from './components/Header.vue';
 import Tasks from './components/Tasks.vue';
 import AddTask from './components/AddTask.vue';
+import Footer from './components/Footer.vue';
 import { BASE_URL } from './config/config';
 
 export default {
@@ -28,6 +32,7 @@ export default {
     Header,
     Tasks,
     AddTask,
+    Footer,
   },
 
   data() {
