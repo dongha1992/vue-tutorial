@@ -26,7 +26,7 @@ export default {
   name: 'AddTask',
   data() {
     return {
-      text: 'text',
+      text: '',
       day: '',
       reminder: false,
     };
@@ -47,7 +47,12 @@ export default {
         day: this.day,
         reminder: this.reminder,
       };
-      console.log(newTask, 'new');
+
+      this.$emit('add-task', newTask);
+
+      this.text = '';
+      this.day = '';
+      this.reminder = false;
     },
   },
 };
