@@ -16,6 +16,30 @@
       "id": "3",
       "text": "Food shopping",
       "day": "March 7th at 2:00pm",
+      "reminder": true
+    },
+    {
+      "id": 4,
+      "text": "asd",
+      "day": "asd",
+      "reminder": true
+    },
+    {
+      "id": 6,
+      "text": "asd",
+      "day": "asd",
+      "reminder": false
+    },
+    {
+      "id": 7,
+      "text": "as",
+      "day": "sd",
+      "reminder": false
+    },
+    {
+      "id": 8,
+      "text": "asd",
+      "day": "ads",
       "reminder": false
     }
   ]
