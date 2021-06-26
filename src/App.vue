@@ -1,7 +1,7 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
   <div class="container">
     <Header title="Task Tracker" />
+    <AddTask :tasksLength="tasks.length" />
     <Tasks
       @toggle-reminder="toggleReminder"
       @delete-task="deleteTask"
@@ -13,12 +13,14 @@
 <script>
 import Header from './components/Header.vue';
 import Tasks from './components/Tasks.vue';
+import AddTask from './components/AddTask.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
     Tasks,
+    AddTask,
   },
 
   data() {
@@ -35,9 +37,9 @@ export default {
     },
     toggleReminder(id) {
       console.log(id, 'id');
-      // this.tasks = this.tasks.map(task =>
-      //   task.id === id ? { ...task, reminder: !task.reminder } : task
-      // );
+      this.tasks = this.tasks.map(task =>
+        task.id === id ? { ...task, reminder: !task.reminder } : task
+      );
     },
   },
 
@@ -101,5 +103,14 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-family: inherit;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
 }
 </style>
